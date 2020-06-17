@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game2048;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Instrumentation;
@@ -23,17 +24,18 @@ namespace _2048Game
             model.Start();
             while (true)
             {
-                Show();
+                Show(model);
                 switch (Console.ReadKey(false).Key)
                 {
                     case ConsoleKey.LeftArrow:model.Left(); break;
                     case ConsoleKey.RightArrow: model.Right();break;
                     case ConsoleKey.UpArrow: model.Up(); break;
                     case ConsoleKey.DownArrow: model.Down(); break;
-                    case ConsoleKey.Escape: model.Start();break;
+                    case ConsoleKey.Escape: return;
                 }
             }
         }
+
         void Show(Model model)
         {
             for(int y = 0; y < model.size; y++)
@@ -41,12 +43,12 @@ namespace _2048Game
                 {
                     Console.SetCursorPosition(x * 5 + 5, y * 2 + 2);
                     int number = model.GetMap(x, y);
-                    Console.Write(number == 0 ? " " : number.ToString());
+                    Console.Write(number == 0 ? "  " : number.ToString());
                 }
             if (model.isGameOver)
-                Console.WriteLine("Game Over");
+                Console.WriteLine("\nGame Over");
             else
-                Console.WriteLine("Still play");
+                Console.WriteLine("\nStill play");
         }
     }
 }
