@@ -20,7 +20,7 @@ namespace _2048Game
 
         void Start()
         {
-            model = new Model(4);
+            model = new Model(3);
             model.Start();
             while (true)
             {
@@ -43,7 +43,7 @@ namespace _2048Game
                 {
                     Console.SetCursorPosition(x * 5 + 5, y * 2 + 2);
                     int number = model.GetMap(x, y);
-                    Console.Write(number == 0 ? "  " : number.ToString());
+                    Console.Write(number == 0 ? ". " : number.ToString());
                 }
             if (model.isGameOver)
                 Console.WriteLine("\nGame Over");
